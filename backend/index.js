@@ -8,7 +8,8 @@ const PORT = process.env.PORT || 5000;
 const db = require("./config/database");
 
 // Routes
-const userRoutes = require("./routes/User");
+const userRoutes = require("./routes/User.route");
+const profileRoutes = require("./routes/Profile.route")
 
 dotenv.config({ path: "./.env" });
 app.use(express.json());
@@ -21,6 +22,7 @@ app.get("/", (req, res) => {
 })
 
 app.use("/api/auth", userRoutes);
+app.use("/api/profile", profileRoutes);
 
 
 app.listen(PORT, (req, res) => {

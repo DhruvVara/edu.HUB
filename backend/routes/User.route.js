@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { signUp, login, sendOTP } = require("../controllers/Auth")
+const { signUp, login, sendOTP } = require("../controllers/Auth.controller")
 
 // const {auth} = require("../middlewares/auth");
 
