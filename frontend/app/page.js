@@ -1,113 +1,162 @@
-import Image from "next/image";
+import CourseCard from "@/components/CourseCard";
+
+
+const company_logo = ["google", "grab", "airbnb", "netflix", "aws", "facebook"];
+
+const whyChooseInfo = [{ img: "course_accessibility", title: "Course Accessibility", description: "Select a suitable course form the vast area of other courses." }, { img: "practical_learning", title: "Practical Learning", description: "Interact yourself with the real-world while doing the real-world project." }, { img: "recorded_session", title: "Recorded Session", description: "Don’t worry about it, access to every sessions on the chosen course." }, { img: "schedule_learning", title: "Schedule Learning", description: "Learn at whatever and whenever at your suitable time and place." }]
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className="overflow-x-hidden">
+      <main className="min-h-[88dvh] w-[100vw] overflow-x-hidden relative">
+        <div className="main_bg bg-[#7dc5c5] w-full h-full flex flex-col lg:flex-row overflow-hidden">
+
+          {/* left */}
+          <div className="w-full lg:w-[50%] absolute top-[150px] lg:top-0 flex justify-center lg:items-end lg:relative">
+            <div className="lg:absolute right-[5%] lg:bottom-[20%] mr-[1%] sm:mr-[15%] lg:mr-[5%] xl:mr-[8%] 2xl:mr-[10%]">
+              <h2 className="leading-[32px] lg:leading-[45px] xl:leading-[55px] text-[1.4rem] md:text-[1.8rem] lg:text-[2.2rem] xl:text-[2.5rem]">Investing in<br /> Knowledge and<br /><span className="text-[#008080]"> Your Future</span></h2>
+              <p className="w-[220px] md:w-[300px] lg:w-[350px] mt-2 sm:mt-3 lg:mt-5 text-[#708090] text-[0.7rem] md:text-[0.8rem] lg:text-[1rem]">With the help of E-Learning, create your own path and driven on your skills on your own to achieve your seek</p>
+              <button className="py-2 lg:py-3 px-5 lg:px-7 text-[0.8rem] lg:text-[1rem] mt-3 lg:mt-5 rounded-lg bg-gradient-to-r from-[#008080] to-[#89E8E8] text-white">Enroll Now </button>
+            </div>
+          </div>
+
+
+          {/* right */}
+          <div className=" w-full lg:w-[50%] absolute bottom-0 lg:top-0 lg:relative">
+            <div className=" absolute left-[35%] md:left-[42%] lg:left-[13%] bottom-0">
+              <img src="./images/landingPage/lady.svg" className="h-[18rem] md:h-[23rem] lg:h-full" />
+
+              {/* <div className="px-2 py-1 rounded-lg backdrop-filter backdrop-blur-md border border-[#008080] left-[27%] bottom-[33%] absolute flex gap-5">
+                <img src="./images/landingPage/msg.svg" />
+                <div className="">
+                  <h3 className="text-[#008080]">Congratulations</h3>
+                  <h4>Your admission completed</h4>
+                </div>
+              </div> */}
+
+            </div>
+
+          </div>
+
         </div>
-      </div>
+      </main>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      {/* Companies Logo */}
+      <section className=" my-[30px] grid grid-cols-3 gap-[30px] lg:grid-cols-6 px-[6%] lg:px-[3%] place-items-stretch">
+        {company_logo.map((name) => {
+          return <img key={name} src={`./images/landingPage/companyLogo/${name}.svg`} className="h-[3.2rem] lg:h-[3rem] xl:h-[4rem]" />
+        })}
+      </section>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+      {/* why choose us */}
+      <section className="grid grid-cols-1 gap-[5rem] lg:gap-0 place-items-center lg:grid-cols-2 my-[8rem]">
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+        {/* Left */}
+        <div className="flex flex-col gap-2 justify-center w-[75%] md:w-[65%] lg:w-full items-center flex-wrap">
+          <h2 className=" text-[1.6rem] sm:text-[2rem] lg:text-[2.3rem] text-start w-full lg:w-[65%] font-semibold">Why Choose <br /><span className="text-[#008080]">edu.HUB</span></h2>
+          <p className="text-[0.7rem] sm:text-[1rem] lg:text-[1.2rem] text-[#708090] w-full lg:w-[65%]" >Choose us for your e-learning journey and unlock
+            a world of knowledge at your fingertips. With
+            engaging content, interactive learning experiences,
+            and expert guidance, we are committed to empowering
+            you to reach your full potential, anytime, anywhere.</p>
+        </div>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+        {/* right */}
+        <div className="grid grid-cols-2 gap-[50px] w-[75%] md:w-[65%] lg:w-full">
+
+          {whyChooseInfo.map((info) => {
+            return (
+              <InfoComponent info={info} key={info.title} />
+            )
+          })}
+        </div>
+      </section>
+
+      {/* Courses */}
+      <section className="flex snap-x">
+        {/* <CourseCard /> */}
+      </section>
+
+
+      {/* Jobs in demand */}
+      <section className="px-[5%] my-[5rem]">
+        <div className="grid grid-cols-2 my-[4rem]">
+          <h3 className="text-[1.9rem] font-semibold">Get the skills you need for a <span className="text-[#3FB1B1]">job <br /> that is in demand.</span></h3>
+          {/* <div className="flex flex-col">
+            <p className="text-[1.1rem] text-[#2C333F]">The modern StudyNotion is the dictates its own terms. Today, to be a competitive specialist requires more than professional skills.</p>
+            <button className="text-white mt-[2rem] bg-[#3FB1B1] w-[110px] py-2 text-[14px] rounded-md">Learn More</button>
+          </div> */}
+        </div>
+
+        <div className="flex">
+          <div className="w-[60%] flex items-center">
+            <img src="./images/skillsYouNeed.svg" className="w-[78%] rounded-2xl img_shadow" />
+          </div>
+
+          <div className="w-[40%] flex flex-col justify-center ">
+            <div className="flex gap-5">
+              <div className="bg-[#e6e2e2] rounded-full p-[15px] flex justify-center items-center">
+                <img src="./images/landingPage/leadership.svg" className="" />
+              </div>
+              <div>
+                <h3 className="text-[1.3rem] font-semibold">Leadership</h3>
+                <h4>Fully committed to the success company</h4>
+              </div>
+            </div>
+
+            <span className="h-[30px] inline-block text-[#AFB2BF] w-4 border-0 border-l-2 border-dotted"></span>
+
+            <div className="flex gap-5 ">
+              {/* <div className="bg-[#e6e2e2] rounded-full p-[15px] flex justify-center items-center"> */}
+              {/* <img src="./images/landingPage/responsibility.svg" className="" /> */}
+              {/* </div> */}
+
+              <div>
+                <h3 className="text-[1.3rem] font-semibold">Responsibility</h3>
+                <h4>Students will always be our top priority</h4>
+              </div>
+            </div>
+
+            <span className="h-[30px] inline-block text-[#AFB2BF] w-4 border-0 border-l-2 border-dotted"></span>
+
+            <div className="flex gap-5">
+              {/* <img src="./images/landingPage/leadership.svg" className="h-[10px]" /> */}
+              <div>
+                <h3 className="text-[1.3rem] font-semibold">Flexibility</h3>
+                <h4>The ability to switch is an important skills</h4>
+              </div>
+            </div>
+
+            <span className="h-[30px] inline-block text-[#AFB2BF] w-4 border-0 border-l-2 border-dotted"></span>
+
+            <div className="flex items-start gap-5">
+              {/* <img src="./images/landingPage/leadership.svg" className="h-[150px]" /> */}
+              <div>
+                <h3 className="text-[1.3rem] font-semibold">Solve the problem</h3>
+                <h4>Code your way to a solution</h4>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+  )
+}
+
+
+
+const InfoComponent = ({ info }) => {
+
+  return (
+    <div key={info.title}>
+      <img src={`./images/landingPage/${info.img}.svg`} className="h-[2rem] sm:h-[2.4rem] md:h-[2.7rem] xl:h-[3rem]" alt={info.title} />
+      <h3 className="mt-2 text-[0.9rem] md:text-[1.2rem] xl:text-[1.5rem] text-black">{info.title}</h3>
+      <p className="w-full lg:w-[80%] xl:w-[65%] text-[0.7rem] md:text-[0.8rem] xl:text-[1rem] text-[#708090]">{info.description}</p>
+    </div>
+  )
 }
