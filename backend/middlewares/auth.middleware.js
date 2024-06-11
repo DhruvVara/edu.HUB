@@ -40,3 +40,72 @@ exports.auth = async (req, res, next) => {
     }
 
 }
+
+// is Student
+exports.isStudent = async (req, res, next) => {
+
+    try {
+
+        if (req.user.accountType !== "Student") {
+            return res.status(401).json({
+                success: false,
+                message: "Only for Student"
+            })
+        }
+
+    } catch (Err) {
+        console.log(Err.message, "isStudent err")
+        return res.status(500).json({
+            success: false,
+            message: "User role cannot be verfied"
+        })
+    }
+}
+
+
+// isInstructor
+exports.isInstructor = async (req, res, next) => {
+
+    try {
+        // console.log("INstructor")
+
+        if (req.user.accountType !== "Instructor") {
+            return res.status(401).json({
+                success: false,
+                message: "Only for Instructor"
+            })
+        }
+
+        next();
+
+    } catch (Err) {
+        console.log(Err.message, "Instructor err")
+        return res.status(500).json({
+            success: false,
+            message: "User role cannot be verfied"
+        })
+    }
+
+}
+
+
+// isAdmin
+exports.isAdmin = async (req, res, next) => {
+    try {
+        if (req.user.accountType !== "Admin") {
+            return res.status(401).json({
+                success: false,
+                message: "Only for Admin"
+            })
+        }
+
+        next();
+
+    } catch (Err) {
+        console.log(Err.message, "isAdmin err")
+        return res.status(500).json({
+            success: false,
+            message: "User role cannot be verfied"
+        })
+    }
+}

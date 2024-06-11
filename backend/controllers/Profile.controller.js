@@ -1,7 +1,7 @@
 const Profile = require("../models/ProfileSchema");
 const User = require("../models/User");
 
-
+// update Profile
 exports.updateProfile = async (req, res) => {
     try {
         const {
@@ -107,3 +107,4 @@ exports.getAllUserDetails = async (req, res) => {
         });
     }
 };
+
