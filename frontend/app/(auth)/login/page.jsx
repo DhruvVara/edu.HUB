@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import React, { useState } from 'react'
 import Link from "next/link";
@@ -6,8 +6,11 @@ import { useRouter } from "next/navigation";
 import axios from 'axios';
 import { MdOutlineMail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { BiLogoGmail } from "react-icons/bi";
+import { PiMicrosoftOutlookLogoFill } from "react-icons/pi";
+import { BiHide, BiShow } from "react-icons/bi";
 
-const page = () => {
+const Page = () => {
     const router = useRouter();
 
     const [details, setDetails] = useState({
@@ -15,6 +18,12 @@ const page = () => {
         email: "",
         password: ""
     });
+
+    const [passwordHide, setPasswordHide] = useState(true);
+
+    const handlePassToggle = () => {
+        setPasswordHide(!passwordHide);
+    }
 
     const handleChange = (e) => {
         e.preventDefault();
@@ -58,7 +67,14 @@ const page = () => {
                 <span className="inline-block w-[10px] h-[1.8px] rounded-xl bg-[#FF7F50]"></span>
             </div> */}
 
-            <h3 className=" w-full text-[0.9rem] mt-2 font-medium">Don't Have An Account? <Link href={"/signup"} className="text-[#008080]">Sign Up</Link></h3>
+            <h2 className="text-[1.7rem] font-bold">Welcome Back</h2>
+
+            <div className="flex gap-1 h-[2px] mt-[3px] w-full">
+                <span className="inline-block w-[40px] h-[1.8px] rounded-xl bg-[#FF7F50]"></span>
+                <span className="inline-block w-[10px] h-[1.8px] rounded-xl bg-[#FF7F50]"></span>
+            </div>
+
+            {/* <h3 className=" w-full text-[0.9rem] mt-2 font-medium">Don't Have An Account? <Link href="/signup" className="text-[#008080]">Sign Up</Link></h3> */}
 
 
             <form onSubmit={handleSubmit} className="mt-2">
@@ -76,20 +92,23 @@ const page = () => {
 
                 <div className="flex flex-col py-1 ">
                     <label className="text-[0.8rem] text-[#708090]">Password*</label>
-                    <div className="w-full flex gap-3 mt-2 bg-[#FFFFFF] rounded-md py-[7px] pl-2">
+                    <div className="w-full flex items-center gap-3 mt-2 bg-[#FFFFFF] rounded-md py-[7px] pl-2">
 
                         <span className='text-[#FF7F50] text-[1.5rem]'><RiLockPasswordLine /></span>
 
-                        <input name="password" type="password" value={details.password} onChange={handleChange} className="outline-none w-full" />
+                        <input name="password" type={passwordHide ? "password" : "text"} value={details.password} onChange={handleChange} className="outline-none w-full" />
+                        <span className='text-[grey] text-[1.3rem] pr-2 cursor-pointer' onClick={handlePassToggle}>{passwordHide ? <BiHide /> : <BiShow />}</span>
                     </div>
                     <span className="underline text-[10px] text-[#708090] inline-block w-full float-end">Forgot Password?</span>
                 </div>
 
-                <button type="submit" className="w-full bg-[#008080] mt-5  text-white py-[0.4rem] rounded-md">Login</button>
+                <button type="submit" className="w-full bg-[#008080] mt-5 text-white py-[0.4rem] rounded-md">Login</button>
             </form>
             <div className="mt-3 flex items-center justify-between">
                 <span className="text-[10px] text-[#708090]">or sign in with</span>
-                <div className="flex gap-2">
+                <div className="flex gap-3 text-[1.5rem]">
+                    <span className='text-[#cd4444] '><BiLogoGmail /></span>
+                    <span className='text-[#3030a7]'><PiMicrosoftOutlookLogoFill /></span>
                     {/* <Image className="cursor-not-allowed" src={"./images/gmail.svg"} width={20} height={10} /> */}
                     {/* <Image className="cursor-not-allowed" src={"./images/outlook.svg"} width={18} height={10} /> */}
                 </div>
@@ -98,4 +117,4 @@ const page = () => {
     )
 }
 
-export default page;
+export default Page;

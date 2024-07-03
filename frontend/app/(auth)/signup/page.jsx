@@ -4,17 +4,30 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { MdOutlineMail } from 'react-icons/md';
 import { RiLockPasswordLine } from 'react-icons/ri';
+import { FaRegUser } from "react-icons/fa";
+import { BiLogoGmail } from "react-icons/bi";
+import { PiMicrosoftOutlookLogoFill } from "react-icons/pi";
+import { BiHide, BiShow } from "react-icons/bi";
 
-const page = () => {
+const Page = () => {
 
     const [details, setDetails] = useState({
         accountType: "Student",
         email: "",
-        firstName:"",
-        lastName:"",
-        password:"",
-        confirmPassword:""
+        firstName: "",
+        lastName: "",
+        password: "",
+        confirmPassword: ""
     })
+
+    const [passwordHide, setPasswordHide] = useState({
+        password: true,
+        confirmPassword: true
+    });
+
+    const handlePassToggle = (e) => {
+        setPasswordHide({ ...passwordHide, [e.target.name]: !passwordHide[e.target.name] });
+    }
 
     const handleChange = (e) => {
         e.preventDefault();
@@ -24,7 +37,7 @@ const page = () => {
 
     return (
         <>
-            <h3 className=" w-full text-[0.9rem] mt-2 font-medium">Don't Have An Account? <Link href={"/login"} className="text-[#008080]">Sign In</Link></h3>
+            {/* <h3 className="w-full text-[0.9rem] mt-2 font-medium">Don't Have An Account? <Link href="/login" className="text-[#008080]">Sign In</Link></h3> */}
 
             <form className='mt-2'>
                 <div className=" w-[90%] md:w-[65%] rounded-md h-[2.5rem] flex justify-center items-center text-center border font-medium border-[#008080] bg-[#008080]/10 px-1">
@@ -36,7 +49,7 @@ const page = () => {
                     <div className="flex flex-col py-1">
                         <label className="text-[0.8rem] text-[#708090]">First Name*</label>
                         <div className="w-full flex gap-3 mt-2 bg-[#FFFFFF] rounded-md py-[7px] pl-2">
-                            <span className='text-[#FF7F50] text-[1.5rem]'><MdOutlineMail /></span>
+                            <span className='text-[#FF7F50] text-[1.3rem]'><FaRegUser /></span>
                             <input name="firstName" type="text" value={details.firstName} onChange={handleChange} className="outline-none w-full " />
                         </div>
                     </div>
@@ -44,7 +57,7 @@ const page = () => {
                     <div className="flex flex-col py-1">
                         <label className="text-[0.8rem] text-[#708090]">Last Name*</label>
                         <div className="w-full flex gap-3 mt-2 bg-[#FFFFFF] rounded-md py-[7px] pl-2">
-                            <span className='text-[#FF7F50] text-[1.5rem]'><MdOutlineMail /></span>
+                            <span className='text-[#FF7F50] text-[1.3rem]'><FaRegUser /></span>
                             <input name="lastName" type="text" value={details.lastName} onChange={handleChange} className="outline-none w-full" />
                         </div>
                     </div>
@@ -53,7 +66,7 @@ const page = () => {
                 <div className="flex flex-col py-1">
                     <label className="text-[0.8rem] text-[#708090]">Email Address*</label>
                     <div className="w-full flex gap-3 mt-2 bg-[#FFFFFF] rounded-md py-[7px] pl-2">
-                        <span className='text-[#FF7F50] text-[1.5rem]'><MdOutlineMail /></span>
+                        <span className='text-[#FF7F50] text-[1.3rem]'><MdOutlineMail /></span>
                         <input name="email" type="email" value={details.email} onChange={handleChange} className="outline-none w-full" />
                     </div>
                 </div>
@@ -62,8 +75,9 @@ const page = () => {
                     <div className="flex flex-col py-1 ">
                         <label className="text-[0.8rem] text-[#708090]">Create Password*</label>
                         <div className="w-full flex gap-3 mt-2 bg-[#FFFFFF] rounded-md py-[7px] pl-2">
-                            <span className='text-[#FF7F50] text-[1.5rem]'><RiLockPasswordLine /></span>
+                            <span className='text-[#FF7F50] text-[1.3rem]'><RiLockPasswordLine /></span>
                             <input name="password" type="password" value={details.password} onChange={handleChange} className="outline-none w-full" />
+                            <span className='text-[grey] text-[1.3rem] pr-2 cursor-pointer' name="password" onClick={handlePassToggle}>{passwordHide ? <BiHide /> : <BiShow />}</span>
                         </div>
                         {/* <span className="underline text-[10px] text-[#708090] inline-block w-full float-end">Forgot Password?</span> */}
                     </div>
@@ -71,8 +85,11 @@ const page = () => {
                     <div className="flex flex-col py-1 ">
                         <label className="text-[0.8rem] text-[#708090]"> Confirm Password*</label>
                         <div className="w-full flex gap-3 mt-2 bg-[#FFFFFF] rounded-md py-[7px] pl-2">
-                            <span className='text-[#FF7F50] text-[1.5rem]'><RiLockPasswordLine /></span>
+                            <span className='text-[#FF7F50] text-[1.3rem]'><RiLockPasswordLine /></span>
                             <input name="confirmPassword" type="password" value={details.confirmPassword} onChange={handleChange} className="outline-none w-full" />
+                            <span className='text-[grey] text-[1.3rem] pr-2 cursor-pointer' name="confirmPassword" onClick={handlePassToggle}>{passwordHide ? <BiHide /> : <BiShow />}</span>
+                            {/* {passwordHide ? <span className='text-[grey] text-[1.3rem] pr-2 cursor-pointer' onClick={handlePassToggle}><BiHide /></span> :
+                                <span className='text-[grey] text-[1.3rem] pr-2 cursor-pointer' onClick={handlePassToggle}><BiShow /></span>} */}
                         </div>
                         {/* <span className="underline text-[10px] text-[#708090] inline-block w-full float-end">Forgot Password?</span> */}
                     </div>
@@ -84,7 +101,9 @@ const page = () => {
 
             <div className="mt-3 flex items-center justify-between">
                 <span className="text-[10px] text-[#708090]">or sign up with</span>
-                <div className="flex gap-2">
+                <div className="flex gap-2 text-[1.5rem]">
+                    <span className='text-[#cd4444] '><BiLogoGmail /></span>
+                    <span className='text-[#3030a7]'><PiMicrosoftOutlookLogoFill /></span>
                     {/* <Image className="cursor-not-allowed" src={"./images/gmail.svg"} width={20} height={10} />
                     <Image className="cursor-not-allowed" src={"./images/outlook.svg"} width={18} height={10} /> */}
                 </div>
@@ -93,4 +112,4 @@ const page = () => {
     )
 }
 
-export default page;
+export default Page;

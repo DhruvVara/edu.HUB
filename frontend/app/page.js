@@ -42,14 +42,14 @@ export default function Home() {
       </main>
 
       {/* Companies Logo */}
-      <section className=" my-[30px] grid grid-cols-3 gap-[30px] lg:grid-cols-6 px-[6%] lg:px-[3%] place-items-stretch">
+      <section className=" my-[20px] grid grid-cols-3 gap-[30px] lg:grid-cols-6 px-[6%] lg:px-[3%] place-items-stretch">
         {company_logo.map((name) => {
           return <img key={name} src={`./images/landingPage/companyLogo/${name}.svg`} className="h-[3.2rem] lg:h-[3rem] xl:h-[4rem]" />
         })}
       </section>
 
       {/* why choose us */}
-      <section className="grid grid-cols-1 gap-[5rem] lg:gap-0 place-items-center lg:grid-cols-2 my-[8rem]">
+      <section className="grid grid-cols-1 gap-[5rem] lg:gap-0 place-items-center lg:grid-cols-2 mt-[3rem]">
 
         {/* Left */}
         <div className="flex flex-col gap-2 justify-center w-[75%] md:w-[65%] lg:w-full items-center flex-wrap">
@@ -74,34 +74,34 @@ export default function Home() {
       </section>
 
       {/* Courses */}
-      <section className="flex snap-x">
+      {/* <section className="flex snap-x">
+      </section> */}
         {/* <CourseCard /> */}
-      </section>
 
 
       {/* Jobs in demand */}
-      <section className="px-[5%] my-[5rem]">
+      <section className="px-[5%] my-[2rem] md:mb-[4rem]">
         <div className="grid grid-cols-2 my-[4rem]">
-          <h3 className="text-[1.9rem] font-semibold">Get the skills you need for a <span className="text-[#3FB1B1]">job <br /> that is in demand.</span></h3>
+          <h3 className=" text-[0.9rem] sm:text-[1.2rem] md:text-[1.5rem] lg:text-[1.9rem] font-semibold">Get the skills you need for a <span className="text-[#3FB1B1]">job <br /> that is in demand.</span></h3>
           {/* <div className="flex flex-col">
             <p className="text-[1.1rem] text-[#2C333F]">The modern StudyNotion is the dictates its own terms. Today, to be a competitive specialist requires more than professional skills.</p>
             <button className="text-white mt-[2rem] bg-[#3FB1B1] w-[110px] py-2 text-[14px] rounded-md">Learn More</button>
           </div> */}
         </div>
 
-        <div className="flex">
-          <div className="w-[60%] flex items-center">
-            <img src="./images/skillsYouNeed.svg" className="w-[78%] rounded-2xl img_shadow" />
+        <div className="flex flex-col md:flex-row">
+          <div className="w-[100%] md:w-[60%] flex items-center">
+            <img src="./images/skillsYouNeed.svg" className="w-[90%] md:w-[78%] rounded-2xl img_shadow" />
           </div>
 
-          <div className="w-[40%] flex flex-col justify-center ">
-            <div className="flex gap-5">
-              <div className="bg-[#e6e2e2] rounded-full p-[15px] flex justify-center items-center">
-                <img src="./images/landingPage/leadership.svg" className="" />
+          <div className="w-[100%] mt-[3rem] px-[4%] md:px-0 md:mt-0 md:w-[40%] flex flex-col justify-center ">
+            <div className="flex gap-5 relative">
+              <div className="bg-[#e6e2e2] left-[-1.3rem] absolute rounded-full p-[13px] flex justify-center items-center">
+                <img src="./images/landingPage/leadership.svg" className="h-[25px] w-[28px]" />
               </div>
-              <div>
-                <h3 className="text-[1.3rem] font-semibold">Leadership</h3>
-                <h4>Fully committed to the success company</h4>
+              <div className="ml-[3rem] md:ml-[5rem]">
+                <h3 className="text-[1.1rem] md:text-[1.3rem] font-semibold">Leadership</h3>
+                <h4 className="text-[0.8rem] md:text-[1rem]">Fully committed to the success company</h4>
               </div>
             </div>
 
