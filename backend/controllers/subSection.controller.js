@@ -8,13 +8,6 @@ exports.createSubSection = async (req, res) => {
 
         const { sectionId, title, timeDuration, description } = req.body;
 
-        if (!sectionId || !title || !timeDuration || !description) {
-            return res.status(400).json({
-                success: false,
-                message: "Missing Information"
-            })
-        }
-
         // extract video
         // const video = req.files.videoFile;
 

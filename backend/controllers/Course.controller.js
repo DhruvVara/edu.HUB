@@ -8,16 +8,6 @@ const { uploadImageToCloudinary } = require("../utils/imageUploader");
 exports.createCourse = async (req, res) => {
     try {
         let { courseName, courseDescription, whatYouWillLearn, category, price, tag, instructions, status="" } = req.body;
-        // console.log(req.files.thumbnail);
-        // const thumbnailDetail  = req.files.thumbnail;
-        console.log("create")
-
-        if (!courseName || !courseDescription || !whatYouWillLearn || !category || !price || !tag || !instructions) {
-            return res.status(400).json({
-                success: false,
-                message: "All fields are mandatory",
-            })
-        }
 
         if (!status || status === undefined) {
             status = "Draft"

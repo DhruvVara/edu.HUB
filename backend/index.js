@@ -3,6 +3,7 @@ const app = express();
 const dotenv = require("dotenv");
 const cors = require("cors")
 
+dotenv.config({ path: "./.env" });
 const PORT = process.env.PORT || 5000;
 
 const db = require("./config/database");
@@ -11,7 +12,7 @@ const db = require("./config/database");
 const userRoutes = require("./routes/User.route");
 const profileRoutes = require("./routes/Profile.route")
 
-dotenv.config({ path: "./.env" });
+
 app.use(express.json());
 db.connect();
 
