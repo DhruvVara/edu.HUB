@@ -1,8 +1,11 @@
+const { jsonResponse } = require("../common/jsonResponse");
+const { message } = require("../common/messages");
 const courseSchema = require("../models/course.model");
 const sectionSchema = require("../models/section.model");
 
 // Create Section
 exports.addSection = async (req, res) => {
+  let status = false;
   try {
     const newSection = await sectionSchema.create({ sectionName });
 
@@ -25,36 +28,28 @@ exports.addSection = async (req, res) => {
       .exec();
 
     if (!updatedCourse) {
-      return res.status(400).json({
-        success: false,
-        message: "Course is Not present",
-      });
+      return jsonResponse(res, 400, status, message.course.notFound);
     }
 
-    return res.status(200).json({
-      success: true,
-      message: "Section added successfullly",
-      data: updatedCourse,
-    });
-  } catch (err) {
-    console.log(err.message, "Error occurred while adding section");
-    return res.status(500).json({
-      success: false,
-      message: "Server Error while adding section",
-    });
+    status = true;
+    return jsonResponse(
+      res,
+      200,
+      status,
+      message.section.createdSuccessfully,
+      updatedCourse
+    );
+  } catch (error) {
+    // console.log(error.message, "Error occurred while adding section");
+    return jsonResponse(res, 500, status, message.common.serverError);
   }
 };
 
 // Update Section
 exports.updateSection = async (req, res) => {
+  let status = false;
   try {
     const { sectionId, sectionName } = req.body;
-    if (!sectionId || !sectionName) {
-      return res.status(400).json({
-        success: false,
-        message: "Missing Information",
-      });
-    }
 
     const sectionDetails = await sectionSchema.findByIdAndUpdate(
       sectionId,
@@ -65,55 +60,48 @@ exports.updateSection = async (req, res) => {
     );
 
     if (!sectionDetails) {
-      return res.status(400).json({
-        success: false,
-        message: "Section is not present",
-      });
+      return jsonResponse(res, 400, status, message.section.notFound);
     }
 
-    return res.status(200).json({
-      success: true,
-      message: "Section Updated Successfully",
-      data: sectionDetails,
-    });
-  } catch (err) {
-    console.log(err.message, "Error occured during updating section");
-    return res.status(500).json({
-      success: false,
-      message: "Error occcured while updating section",
-    });
+    status = true;
+    return jsonResponse(
+      res,
+      200,
+      status,
+      message.section.sectionUpdated,
+      sectionDetails
+    );
+  } catch (error) {
+    return jsonResponse(
+      res,
+      500,
+      status,
+      message.common.serverError,
+      error.message
+    );
   }
 };
 
 // Delete Section
 exports.deleteSection = async (req, res) => {
+  let status = false;
   try {
     const { sectionId } = req.body;
-    if (!sectionId) {
-      return res.status(400).json({
-        success: false,
-        message: "All fields are mandatory",
-      });
-    }
 
     const sectionDetails = await sectionSchema.findByIdAndDelete({ sectionId });
 
     if (!sectionDetails) {
-      return res.status(400).json({
-        success: false,
-        message: "Section is not present",
-      });
+      return jsonResponse(res, 400, status, message.section.notFound);
     }
-
-    return res.status(200).json({
-      success: true,
-      message: "Section Deleted Successfully",
-    });
-  } catch (err) {
-    console.log(err.message, "Error occured during updating section");
-    return res.status(500).json({
-      success: false,
-      message: "Error occcured while updating section",
-    });
+    status = true;
+    return jsonResponse(res, 200, status, message.section.sectionDeleted);
+  } catch (error) {
+    return jsonResponse(
+      res,
+      500,
+      status,
+      message.common.serverError,
+      error.message
+    );
   }
 };
