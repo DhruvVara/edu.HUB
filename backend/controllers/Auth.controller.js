@@ -202,7 +202,7 @@ exports.changePassword = async (req, res) => {
     const userDetails = await User.findById(req.user.id);
 
     // Get old password, new password, and confirm new password from req.body
-    const { oldPassword, newPassword, confirmNewPassword } = req.body;
+    const { oldPassword, newPassword } = req.body;
 
     // Validate old password
     const isPasswordMatch = await bcrypt.compare(
@@ -210,21 +210,7 @@ exports.changePassword = async (req, res) => {
       userDetails.password
     );
     if (!isPasswordMatch) {
-      // If old password does not match, return a 401 (Unauthorized) error
       return jsonResponse(res, 401, status, message.user.incorrectPassword);
-      // return res
-      //     .status(401)
-      //     .json({ success: false, message: "The password is incorrect" });
-    }
-
-    // Match new password and confirm new password
-    if (newPassword !== confirmNewPassword) {
-      // If new password and confirm new password do not match, return a 400 (Bad Request) error
-      // return res.status(400).json({
-      //     success: false,
-      //     message: "The password and confirm password does not match",
-      // });
-      // return json
     }
 
     // Update password
@@ -244,21 +230,23 @@ exports.changePassword = async (req, res) => {
           `Password updated successfully for ${updatedUserDetails.firstName} ${updatedUserDetails.lastName}`
         )
       );
-      console.log("Email sent successfully:", emailResponse.response);
+
+      // console.log("Email sent successfully:", emailResponse.response);
     } catch (error) {
       // If there's an error sending the email, log the error and return a 500 (Internal Server Error) error
-      console.error("Error occurred while sending email:", error);
-      return res.status(500).json({
-        success: false,
-        message: "Error occurred while sending ema  il",
-        error: error.message,
-      });
+      // console.error("Error occurred while sending email:", error.message);
+      return jsonResponse(
+        res,
+        500,
+        status,
+        "Error occurred while sending email",
+        error.message
+      );
     }
 
+    status = true;
     // Return success response
-    return res
-      .status(200)
-      .json({ success: true, message: "Password updated successfully" });
+    return jsonResponse(res, 200, status, message.common.passwordChanged);
   } catch (error) {
     // If there's an error updating the password, log the error and return a 500 (Internal Server Error) error
     console.error("Error occurred while updating password:", error);

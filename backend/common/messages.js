@@ -2,6 +2,10 @@ exports.message = {
   common: {
     serverError: "Internal Server Error",
     unauthorisedAccess: "Unauthorised Access",
+    passwordChanged: "Password Changed Succesfully",
+    emailSent: "Email sent successfully",
+    tokenExpired: "Token expired",
+    passwordUpdated:"Password updated successfully"
   },
   user: {
     emailExist: "This email is already exist.",
@@ -41,6 +45,5 @@ exports.message = {
   },
   profile: {
     profileUpdated: "Profile Updated Successfully",
-    USER
   },
 };
